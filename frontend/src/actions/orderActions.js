@@ -85,7 +85,6 @@ export const payOrder = (orderId, paymentResult) => async (
 ) => {
   try {
     dispatch({
-      'Content-Type': 'application/json',
       type: ORDER_PAY_REQUEST,
     });
 
@@ -95,6 +94,7 @@ export const payOrder = (orderId, paymentResult) => async (
 
     const config = {
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
