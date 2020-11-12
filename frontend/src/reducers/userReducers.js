@@ -9,6 +9,7 @@ import {
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
+  USER_LIST_RESET,
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
@@ -70,6 +71,8 @@ export const userUpdateProfileReducer = (state = {}, action) => {
       return { loading: false, success: true, userInfo: action.payload };
     case USER_UPDATE_PROFILE_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
   }
 };
 
@@ -81,7 +84,8 @@ export const userListReducer = (state = { users: [] }, action) => {
       return { loading: false, users: action.payload };
     case USER_LIST_FAIL:
       return { loading: false, error: action.payload };
-
+    case USER_DETAILS_RESET:
+      return { users: [] };
     default:
       return state;
   }
