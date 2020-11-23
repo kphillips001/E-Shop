@@ -47,6 +47,7 @@ const App = () => {
             component={ProductEditScreen}
             exact
           />
+          <Route path='/search/:keyword' component={HomeScreen} />
           <Route path='/' component={HomeScreen} exact />
         </Container>
       </main>
