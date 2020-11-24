@@ -41,7 +41,7 @@ const ProductListScreen = ({ history, match }) => {
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
 
-    if (!userInfo.isAdmin) {
+    if (!userInfo || !userInfo.isAdmin) {
       history.push('/login');
     }
 
@@ -61,12 +61,12 @@ const ProductListScreen = ({ history, match }) => {
   ]);
 
   const deleteHandler = (id) => {
-    if (window.confirm('Are you sure?')) {
+    if (window.confirm('Are you sure')) {
       dispatch(deleteProduct(id));
     }
   };
 
-  const createProductHandler = (product) => {
+  const createProductHandler = () => {
     dispatch(createProduct());
   };
 
@@ -76,10 +76,11 @@ const ProductListScreen = ({ history, match }) => {
         <Col>
           <h1>Products</h1>
         </Col>
-        <Col className='text-right'></Col>
-        <Button className='my-3' onClick={createProductHandler}>
-          <i className='fas fa-plus'></i> Create Product
-        </Button>
+        <Col className='text-right'>
+          <Button className='my-3' onClick={createProductHandler}>
+            <i className='fas fa-plus'></i> Create Product
+          </Button>
+        </Col>
       </Row>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
